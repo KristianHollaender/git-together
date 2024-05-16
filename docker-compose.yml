@@ -12,3 +12,13 @@ services:
     ports:
       - '5672:5672'
       - '15672:15672'
+  timeline-service:
+    image: timelineservice
+    build:
+      context: .
+      dockerfile: ./projects/TimelineService/Dockerfile
+    ports:
+      - '8080:80'
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
